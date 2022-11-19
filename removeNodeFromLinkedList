@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+        int size= ListNodeSize(head);
+        removeNthNode(head, size-idx);
+    }
+    public void removeNthNode(ListNode head, int idx, int size){
+        if(idx<0 || idx>=size){
+            System.out.println("Invalid Input");
+        }else if(idx==0){
+            head = head.next;
+            size--;
+        }else if(idx==size-1){
+            int forward = head;
+            for(int i = 0;i<idx-1;i++){
+                forward = forward.next;
+            }
+            forward.next = null;
+            tail= forward;
+            size--;
+        }else{
+            Node cur = head;
+            for(int i = 0;i<idx-1;i++){
+                curr = curr.next;
+            }
+            cur.next = cur.next.next;
+            size--;
+        }
+    }
+    public int ListNodeSize(ListNode head){
+        int count  = 0;
+        while(head.next!=null){
+            count++;
+        }
+        return count;
+        
+    }
+}
