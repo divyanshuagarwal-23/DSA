@@ -1,0 +1,37 @@
+class pair{
+    int v = 0;
+    int wt = 0;
+    pair(int v, int wt){
+        this.v = v;
+        this.wt = wt;
+    }
+}
+
+class Solution
+{
+    static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
+    {
+        PriorityQueue<pair> pq = new PriorityQueue<pair>((x,y)->x.wt-y.wt);
+        int dis[] = new int[V];
+        for(int i = 0;i<V;i++){
+            dis[i] = (int)1e9;
+        }
+        dis[S] = 0;
+        pq.add(new pair(S,0));
+        while(pq.size()>0){
+            int vertex = pq.peek().v;
+            int distance = pq.peek().wt;
+            pq.remove();
+            for(int i = 0;i<adj.get(vertex).size();i++){
+                int neighbor = adj.get(vertex).get(i).get(0);
+                int weight = adj.get(vertex).get(i).get(1);
+                    if(dis[neighbor]>distance+weight){
+                   dis[neighbor]=distance+weight;
+                     pq.add(new pair(neighbor,dis[neighbor]));
+                    }
+            }
+        }
+    return dis;
+}
+}
+
