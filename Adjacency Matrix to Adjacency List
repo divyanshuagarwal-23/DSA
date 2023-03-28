@@ -1,0 +1,16 @@
+class Solution {
+    ArrayList<Integer>[] matrixToAdjList(int n, int[][] matrix) {
+        ArrayList<Integer>[] adjList = new ArrayList [n];
+		for (int i = 0; i < n; i++) {
+			adjList[i] = new ArrayList<Integer>();
+		}
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				if(matrix[i][j] == 1) {
+					adjList[i].add(j);
+				}
+			}
+		}
+		return adjList;
+    }
+}
